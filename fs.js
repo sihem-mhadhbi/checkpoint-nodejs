@@ -1,6 +1,11 @@
 const fs = require("fs");
-
-fs.appendFile("welcome.txt", "Hello Node", function (err) {
+const path = require("path");
+fs.rename("welcome.txt", "hello.txt", (err) => {
   if (err) throw err;
-  console.log("Saved!");
+
+  console.log(" file renamed");
+  fs.readFile(path.join(__dirname, "hello.txt"), "UTF8", (err, data) => {
+    if (err) throw err;
+    console.log(data);
+  });
 });
